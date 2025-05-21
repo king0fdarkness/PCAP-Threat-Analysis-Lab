@@ -31,4 +31,4 @@ The use of plain FTP protocol exposes user credentials to interception. Secure p
 
 ## 🖼️ Screenshots
 
-![FTP Credentials in Wireshark](../screenshots/ftp-credentials.png)
+![FTP Credentials in Wireshark]([../screenshots/ftp-credentials.png](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/ftp-credentials.png?raw=true))
