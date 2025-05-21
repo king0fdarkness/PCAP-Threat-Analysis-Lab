@@ -2,16 +2,16 @@
 
 # ftp.pcap - FTP Credentials Disclosure
 
-##Tools Used
+## Tools Used
 - Wireshark
 - snort
 
-##Threat Detected
+## Threat Detected
 - **Plaintext FTP Credentials**
 - **Potential unauthorized access**
 - **Evidence:** Username and password sent in cleartext, file transfer of `music.mp3`
 
-##Key Details
+## Key Details
 - **Source IP:** 192.168.0.114
 - **Destination IP:** 192.168.0.193
 - **Username:** `csanders`
@@ -21,11 +21,11 @@
 - **Port:** TCP 21
 
 
-##Screenshots
+## Screenshots
 
 ![FTP Credentials in Wireshark](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/ftp-credentials.png)
 
-##Custom Snort Rules (local.rules)
+## Custom Snort Rules (local.rules)
 
 alert tcp any any -> any 21 (
     msg:"FTP USER command detected";
@@ -48,15 +48,15 @@ alert tcp any any -> any 21 (
     rev:1;
 )
 
-##Rule Summary
+## Rule Summary
 SID	Description
 1000001	Detects USER command
 1000002	Detects PASS command
 1000003	Detects anonymous login attempts
 
-**rules file** : /etc/snort/rules/local.rules
+** rules file** : /etc/snort/rules/local.rules
 
-##command used :
+## command used :
 sudo snort -R /etc/snort/rules/local.rules -r ~/projects/projects/wireshark/credential_exposure/ftp.pcap -A alert_fast -c /etc/snort/snort.lua -l /tmp/
 
 **output**:
@@ -66,13 +66,13 @@ sudo snort -R /etc/snort/rules/local.rules -r ~/projects/projects/wireshark/cred
 
 ![alert by snort](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/snort_alert.png)
 
-##Indicators of Compromise (IOCs)
+## Indicators of Compromise (IOCs)
 Unencrypted FTP login (no SSL/TLS)
 Credentials visible in raw packet payload
 Anonymous login attempt detected
 Insecure transfer of music.mp3
 
-##Conclusion
+## Conclusion
 FTP transmits sensitive credentials in plaintext.
 Wireshark allowed deep inspection and verification of credential leakage.
 Snort was successfully configured to detect both generic and specific FTP login attempts.
