@@ -84,10 +84,10 @@ To prevent such exposures, use secure alternatives like FTPS or SFTP.
 ## Tool 
 - wireshark
 
-## Thread detected 
+## Threat detected 
 - none
 
-## Key points 
+## Key Details 
 
 Packet | Type	  | Source MAC	           | Destination MAC	            | IP Info (from Info column)
 ARP    | Request  |	HonHaiPrecis_6e:8b:24  | Broadcast (ff:ff:ff:ff:ff:ff)	| who has 192.168.0.1? Tell 192.168.0.114
@@ -114,3 +114,48 @@ ARP    | Reply	  | DLINK_0b:22:ba	       | HonHaiPrecis_6e:8b:24	        | 192.1
 This PCAP contains a standard ARP resolution sequence.
 No immediate threats are evident unless the ARP reply contains an incorrect or spoofed MAC address. If part of a larger traffic capture, consider running
 a Snort rule to detect abnormal ARP behavior (e.g., unsolicited ARP replies).
+
+## msnms.pcap - MSN Messenger PCAP Analysis
+
+## Tool
+- wireshark
+
+## Threat Detected
+- Unencrypted Instant Messaging Communication via MSN Messenger Protocol (msnms).
+- Sensitive data such as usernames and messages were observed in cleartext, indicating potential privacy exposure if intercepted over an insecure network.
+
+## Key Details
+
+Message Type  |  Description
+USR           |  Identify the user logging in. eg. USR 93 tesla_brian@hotmail.com Brian
+CAL           |  Session or call initiation
+JOI           |  A user has joined a session
+MSG           |  Message exchanged between users
+
+## Screenshots 
+
+![USR](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/filterUSR.png)
+
+![CAL](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/filterCAL.png)
+
+![JOI](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/filterJOI.png)
+
+![MSG](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/filterMSG.png)
+
+![stream](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/msg1.png)
+
+![stream](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/msg2.png)
+
+![stream](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/msg3.png)
+
+![stream](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/msg4.png)
+
+## Indicators of Compromise (IOCs)
+
+- Email addresses visible in plain text
+- Chat contents exposed without encryption
+- Session metadata like joins and initiations captured
+
+## Conclusion 
+The analysis confirms that MSN Messenger transmits critical information—such as usernames and chat messages—without encryption. 
+This makes it highly susceptible to packet sniffing and man-in-the-middle attacks. It is strongly advised to avoid legacy IM services like MSN and use encrypted communication platforms.
