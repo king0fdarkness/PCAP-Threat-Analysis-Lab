@@ -84,20 +84,20 @@ To prevent such exposures, use secure alternatives like FTPS or SFTP.
 ## Tool 
 - wireshark
 
-## Thread detected :
+## Thread detected 
 - none
 
-## Key points :
+## Key points 
 
 Packet | Type	  | Source MAC	           | Destination MAC	            | IP Info (from Info column)
 ARP    | Request  |	HonHaiPrecis_6e:8b:24  | Broadcast (ff:ff:ff:ff:ff:ff)	| who has 192.168.0.1? Tell 192.168.0.114
 ARP    | Reply	  | DLINK_0b:22:ba	       | HonHaiPrecis_6e:8b:24	        | 192.168.0.1 is at 00:13:46:0b:22:ba
 
-## Screenshot :
+## Screenshot 
 
-![arp screenshot]()
-![apr]()
-![arp]()
+![arp screenshot](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/arp.png)
+![apr](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/arp1.png)
+![arp](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/arp2.png)
 
 ## Indicators of Compromise (If Suspicious)
 
