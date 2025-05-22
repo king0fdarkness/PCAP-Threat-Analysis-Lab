@@ -1,6 +1,6 @@
 # PCAP-Threat-Analysis-Lab
 
-# ftp.pcap - FTP Credentials Disclosure
+## ftp.pcap - FTP Credentials Disclosure
 
 ## Tools Used
 - Wireshark
@@ -77,3 +77,38 @@ FTP transmits sensitive credentials in plaintext.
 Wireshark allowed deep inspection and verification of credential leakage.
 Snort was successfully configured to detect both generic and specific FTP login attempts.
 To prevent such exposures, use secure alternatives like FTPS or SFTP.
+
+
+## arp.pcap - ARP packet inspection
+
+## Tool 
+- wireshark
+
+## Thread detected :
+- none
+
+## Key points :
+
+Packet | Type	  | Source MAC	           | Destination MAC	            | IP Info (from Info column)
+ARP    | Request  |	HonHaiPrecis_6e:8b:24  | Broadcast (ff:ff:ff:ff:ff:ff)	| who has 192.168.0.1? Tell 192.168.0.114
+ARP    | Reply	  | DLINK_0b:22:ba	       | HonHaiPrecis_6e:8b:24	        | 192.168.0.1 is at 00:13:46:0b:22:ba
+
+## Screenshot :
+
+![arp screenshot]()
+![apr]()
+![arp]()
+
+## Indicators of Compromise (If Suspicious)
+
+ Check whether the MAC address in the ARP reply is valid for that IP
+
+- Look for signs of ARP spoofing:
+- Unexpected MAC address
+- Frequent ARP replies without requests (not in this PCAP but worth noting)
+
+## Conclusion 
+
+This PCAP contains a standard ARP resolution sequence.
+No immediate threats are evident unless the ARP reply contains an incorrect or spoofed MAC address. If part of a larger traffic capture, consider running
+a Snort rule to detect abnormal ARP behavior (e.g., unsolicited ARP replies).
