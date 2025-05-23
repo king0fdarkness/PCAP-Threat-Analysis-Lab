@@ -191,3 +191,40 @@ Exploit Action	             Remote shell access opened via port 4444
 # Conclusion
 The blaster.pcap file contains evidence of a classic Blaster worm infection. The host with TCP port 4444 open is acting as the backdoor and is therefore the victim.
 The presence of the start msblast.exe command confirms post-exploitation control. This is a clear example of malware behavior following exploitation of the MS03-026 vulnerability.
+
+## portscan.pcap - Portscanning Detection 
+
+## Tool 
+- Wireshark
+
+## Treat Detected 
+TCP SYN Port Scan
+A single host is attempting to identify open ports on another host by sending multiple SYN packets across a range of port
+
+## Key Details
+
+Attacker IP : 10.100.25.14
+Victim IP : 10.100.18.12
+Number of syn packet : 29
+Destination port scaned : multiple
+
+## Screenshot
+
+![syn packet](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/portscan1.png)
+
+![packet details](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/portscan4.png)
+
+![conversation](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/portscan2.png)
+
+![endpoint](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/portscan3.png)
+
+## Indication of Compromise (IOCs)
+
+- Repeated SYN packets from 10.100.25.14 to 10.100.18.12
+- Varying destination ports
+- No corresponding SYN-ACK replies in some cases
+- Typical signs of horizontal scanning
+
+## Conclusion
+
+This behavior indicates a reconnaissance attempt by the attacker to find open services on the victim. Continuous scanning like this can be a precursor to exploitation or intrusion.
