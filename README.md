@@ -159,3 +159,35 @@ MSG           |  Message exchanged between users
 ## Conclusion 
 The analysis confirms that MSN Messenger transmits critical information—such as usernames and chat messages—without encryption. 
 This makes it highly susceptible to packet sniffing and man-in-the-middle attacks. It is strongly advised to avoid legacy IM services like MSN and use encrypted communication platforms.
+
+## blaster.pcap - Blaster Worm
+
+## Tool 
+- Wireshark
+
+## Treat Detected
+Blaster Worm (MSBlast.exe) – A well-known worm targeting Microsoft Windows systems by exploiting the DCOM RPC vulnerability (MS03-026).
+
+## Key Details 
+
+Infection Method	         DCOM RPC Exploit
+Backdoor Port Used	         TCP 4444
+Affected Host (Victim)	     10.234.2.116 of packets using TCP port 4444 as source
+Attacker Host	             10.234.0.239 IP of same packets (initiated the connection)
+Command Observed	         start msblast.exe
+Payload Location	         C:\WINNT\system32\msblast.exe
+Exploit Action	             Remote shell access opened via port 4444
+
+## Screenshot 
+
+![blaster worm](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/blaster-worm.png)
+
+## Indication of Compromise (IOCs)
+
+- TCP communication on port 4444 (unusual backdoor activity)
+- msblast.exe process execution command observed in cleartext
+- Reverse shell behavior initiated from external host
+
+# Conclusion
+The blaster.pcap file contains evidence of a classic Blaster worm infection. The host with TCP port 4444 open is acting as the backdoor and is therefore the victim.
+The presence of the start msblast.exe command confirms post-exploitation control. This is a clear example of malware behavior following exploitation of the MS03-026 vulnerability.
