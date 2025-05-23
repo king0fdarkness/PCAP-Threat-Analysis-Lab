@@ -248,15 +248,15 @@ Use of legitimate-looking HTTP requests to potentially evade detection
 - No user-initiated browsing activity — indicative of background automation
 
 ## Key Details
-Source IP: 24.6.125.19
-Destination IPs: 208.48.15.13, 209.123.150.14, 216.49.88.118
-User-Agent: MCUPDATE
-HTTP Commands: POST /apps/Agent/en-us/Agent5/chkupd.asp
-Suspicious Parameters: OS=4, IE=6.0.2800.1106, Version=5.0 ,List of .exe and .dll files (indicative of host inventory)
-Port: TCP 80
-Stream Behavior:
-  Multiple connections to same destination over different ports
-  Each conversation includes data exchange (1–4 KB), not just handshakes
+- Source IP: 24.6.125.19
+- Destination IPs: 208.48.15.13, 209.123.150.14, 216.49.88.118
+- User-Agent: MCUPDATE
+- HTTP Commands: POST /apps/Agent/en-us/Agent5/chkupd.asp
+- Suspicious Parameters: OS=4, IE=6.0.2800.1106, Version=5.0 ,List of .exe and .dll files (indicative of host inventory)
+- Port: TCP 80
+- Stream Behavior:
+  - Multiple connections to same destination over different ports
+  - Each conversation includes data exchange (1–4 KB), not just handshakes
 
 ## Screenshot
 ![stream](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil1.png)
@@ -270,11 +270,16 @@ Stream Behavior:
 ![pane2](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil5.png)
 
 ![tcp](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil6.png)
+
 ## Indicator of Compromise (IOCs)
 
-IP: 216.49.88.118, 209.123.150.14, 208.48.15.13
-Host Header: us.mcafee.com
-HTTP URI: /apps/Agent/en-us/Agent5/chkupd.asp
-User-Agent: MCUPDATE
-PCAP Timeframe: (based on Rel Start), multiple interactions within seconds
+- IP: 216.49.88.118, 209.123.150.14, 208.48.15.13
+- Host Header: us.mcafee.com
+- HTTP URI: /apps/Agent/en-us/Agent5/chkupd.asp
+- User-Agent: MCUPDATE
+- PCAP Timeframe: (based on Rel Start), multiple interactions within seconds
 
+## Conclusion
+This PCAP likely captures part of a malware infection lifecycle, specifically the post-exploitation phase where the infected host:
+- Profiles its own software environment
+- Contacts external servers to exfiltrate data or receive further instructions
