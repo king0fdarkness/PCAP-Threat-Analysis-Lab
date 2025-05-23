@@ -228,3 +228,53 @@ Destination port scaned : multiple
 ## Conclusion
 
 This behavior indicates a reconnaissance attempt by the attacker to find open services on the victim. Continuous scanning like this can be a precursor to exploitation or intrusion.
+
+## evilprogram.pcap - Suspicious HTTP Malware Activity
+
+## Tool 
+- Wireshark
+
+## Threat Detection
+Unauthorized system profiling via HTTP
+Potential Command and Control (C2) communication
+Use of legitimate-looking HTTP requests to potentially evade detection
+
+## Evidence
+
+- Multiple HTTP POST requests to /chkupd.asp containing detailed AV/software configuration
+- Use of spoofed or abused domain: us.mcafee.com
+- Repeated connections to 216.49.88.118, potentially a C2 server
+- Unusual User-Agent: MCUPDATE
+- No user-initiated browsing activity — indicative of background automation
+
+## Key Details
+Source IP: 24.6.125.19
+Destination IPs: 208.48.15.13, 209.123.150.14, 216.49.88.118
+User-Agent: MCUPDATE
+HTTP Commands: POST /apps/Agent/en-us/Agent5/chkupd.asp
+Suspicious Parameters: OS=4, IE=6.0.2800.1106, Version=5.0 ,List of .exe and .dll files (indicative of host inventory)
+Port: TCP 80
+Stream Behavior:
+  Multiple connections to same destination over different ports
+  Each conversation includes data exchange (1–4 KB), not just handshakes
+
+## Screenshot
+![stream](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil1.png)
+
+![pane2](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil2.png)
+
+![pane2](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil3.png)
+
+![pane2](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil4.png)
+
+![pane2](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil5.png)
+
+![tcp](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/evil6.png)
+## Indicator of Compromise (IOCs)
+
+IP: 216.49.88.118, 209.123.150.14, 208.48.15.13
+Host Header: us.mcafee.com
+HTTP URI: /apps/Agent/en-us/Agent5/chkupd.asp
+User-Agent: MCUPDATE
+PCAP Timeframe: (based on Rel Start), multiple interactions within seconds
+
