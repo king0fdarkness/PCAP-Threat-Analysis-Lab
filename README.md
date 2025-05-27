@@ -283,3 +283,47 @@ Use of legitimate-looking HTTP requests to potentially evade detection
 This PCAP likely captures part of a malware infection lifecycle, specifically the post-exploitation phase where the infected host:
 - Profiles its own software environment
 - Contacts external servers to exfiltrate data or receive further instructions
+
+## telnet.pcap - Telnet Credentials Disclosure
+
+## Tool
+- Wireshark
+
+## Treat Detection
+Plaintext Telnet Credentials
+Unauthorized remote shell access
+Interaction with outdated and potentially vulnerable OpenBSD system
+
+## Evidence 
+Username and password sent in cleartext
+Full interactive session captured (login, shell commands, file listing, external ping)
+
+## Key Details
+
+- Source IP: 192.168.0.2
+- Destination IP: 192.168.0.1
+- Username: fake
+- Password: user
+- Telnet Commands Seen: login, /sbin/ping, ls, ls -a, exit
+- Detected Files: .rhosts, .profile, .cshrc, .login, .mailrc
+- Port: TCP 23
+
+## Screenshots
+
+![telnet1](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/telnet1.png)
+
+![telnet2](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/telnet2.png)
+
+![telnet3](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/telnet3.png)
+
+## Indicator of Compromise (IOCs)
+
+- Unencrypted Telnet login (no SSL/TLS)
+- Credentials (fake/user) visible in raw packet payload
+- Interaction with a legacy OpenBSD 2.6-beta host
+- .rhosts file presence (suggests rlogin trust configuration)
+- External host contacted via ping to www.yahoo.com
+
+## Conclusion 
+
+Telnet communication is entirely unencrypted, exposing both credentials and session activity to passive attackers. Wireshark revealed the full session, including login and command execution. The presence of a .rhosts file suggests risky trust configurations, and the system in question runs a 1999 beta version of OpenBSD, indicating severe potential vulnerabilities.
