@@ -327,3 +327,53 @@ Full interactive session captured (login, shell commands, file listing, external
 ## Conclusion 
 
 Telnet communication is entirely unencrypted, exposing both credentials and session activity to passive attackers. Wireshark revealed the full session, including login and command execution. The presence of a .rhosts file suggests risky trust configurations, and the system in question runs a 1999 beta version of OpenBSD, indicating severe potential vulnerabilities.
+
+## email-trouble.pcap - POP3 Email Phishing & Malware Distribution
+
+## Tool 
+- Wireshark
+
+## Treat Detection
+- Retrieval of malicious emails via POP3
+- Executable attachments with suspicious .pif extension
+- Potential malware delivery mechanism
+
+## Key Details
+
+Source IP: 161.58.73.170
+Destination IP: 12.234.13.202
+Protocol: POP3 (TCP port 110)
+Suspicious Email Subjects:
+    Re: Details
+    Re: Approved
+Malicious Attachments:
+    document_9446.pif
+    movie0045.pif
+    document_all.pif
+Content Indicators:
+    Emails contain phrases like “See the attached file for details.”
+    Each email includes Content-Type: application/octet-stream and filename=".pif"
+RETR Commands Observed:
+    RETR 20, RETR 22, RETR 24
+    Each retrieving emails with binary file attachments
+
+## Screenshots 
+
+![emaill](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/emailt1.png)
+
+![email](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/emait2.png)
+
+![email](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/emailt3.png)
+
+![email](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/emailt4.png)
+
+Indicator of Compromise (IOCs)
+
+- Executable .pif files disguised as legitimate documents
+- Suspicious attachments via POP3
+- Emails originating from IP: 12.219.164.63
+- Generic and misleading subject lines designed to lure the user
+
+## Conclusion
+
+The email communication captured in email-trouble.pcap indicates malware dissemination through POP3. While no credentials are visible in the capture, multiple emails contain executable attachments using the .pif extension — a known tactic for hiding Windows malware. These emails use social engineering to trick recipients into opening harmful files.
