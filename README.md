@@ -394,7 +394,7 @@ Destination IP address :10.100.18.5
 Username: admin (entered as aaddmmiinn – each character sent twice due to echo mode)
 Password: barrymanilow (note the typo barrymnanilow indicates mistyped input corrected by backspace)
 Target Device: Enterasys Networks Matrix N7 Platinum switch.
-Manufacturer Info:
+Manufacturer Infor:
   - Serial Number: 001188424ee0
   - Firmware Version: 05.35.16
 Session Type: Telnet (Unencrypted)
