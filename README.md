@@ -377,3 +377,45 @@ Indicator of Compromise (IOCs)
 ## Conclusion
 
 The email communication captured in email-trouble.pcap indicates malware dissemination through POP3. While no credentials are visible in the capture, multiple emails contain executable attachments using the .pif extension — a known tactic for hiding Windows malware. These emails use social engineering to trick recipients into opening harmful files.
+
+## hackerview.pcap – Telnet Credentials Disclosure and Unauthorized Device Access
+
+## Tool
+- Wireshark
+
+## Threat Detection
+Cleartext Telnet Credentials Disclosure
+Access to Network Infrastructure Device (Matrix N7 Platinum Switch)
+Potential Unauthorized Configuration Change Risk
+
+## Key Details
+Source IP address:10.100.16.1
+Destination IP address :10.100.18.5
+Username: admin (entered as aaddmmiinn – each character sent twice due to echo mode)
+Password: barrymanilow (note the typo barrymnanilow indicates mistyped input corrected by backspace)
+Target Device: Enterasys Networks Matrix N7 Platinum switch
+Manufacturer Info:
+  - Serial Number: 001188424ee0
+  - Firmware Version: 05.35.16
+Session Type: Telnet (Unencrypted)
+Evidence: Login banner, device prompt Matrix N7 Platinum(su)->, device specifications
+
+## Screenshot
+
+![hacker](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/hacker1.png)
+
+![hacker](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/hacker2.png)
+
+![hacker](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/hacker3.png)
+
+## Indicator of Compromise (IOCs)
+
+- Use of Telnet instead of encrypted protocols (e.g., SSH)
+- Credentials visible in plaintext
+- Access to critical infrastructure device
+- Superuser-level command line prompt (su)
+
+## Conclusion
+
+This Telnet session reveals a major security risk: successful superuser login to a network switch using cleartext credentials. The attacker (192.168.1.103) gained access to the Enterasys Matrix N7 Platinum switch (192.168.1.1), potentially enabling configuration changes or backdoor installations. Telnet should be disabled or blocked, and SSH should be enforced. Logs from the device should be audited for further unauthorized actions.
+
