@@ -442,11 +442,13 @@ The combination of TTL values is indicative of active OS detection, often used i
 
 ## Screenshots
 
-![osfingerprinting]()
+![osfingerprinting](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/osfingerprinting1.png)
 
-![osfingerprinting]()
+![osfingerprinting](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/osfingerprinting2.png)
 
-![osfingerprinting]()
+![osfingerprinting](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/osfingerprinting3.png)
+
+![osfingerprinting](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/screenshots/osfingerprinting4.png)
 
 ## Indicators of Compromise (IoCs)
  - Multiple ICMP packets with different TTLs:
