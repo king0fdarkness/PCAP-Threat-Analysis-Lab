@@ -421,3 +421,46 @@ Evidence: Login banner, device prompt Matrix N7 Platinum(su)->, device specifica
 
 This Telnet session reveals a major security risk: successful superuser login to a network switch using cleartext credentials. The attacker (192.168.1.103) gained access to the Enterasys Matrix N7 Platinum switch (192.168.1.1), potentially enabling configuration changes or backdoor installations. Telnet should be disabled or blocked, and SSH should be enforced. Logs from the device should be audited for further unauthorized actions.
 
+## osfingerprinting.pcap - OS Fingerprinting Packet Inspection Report
+
+## Tool
+- Wireshark
+
+## Threat Details
+Potential Reconnaissance Activity (OS Fingerprinting via ICMP TTL Analysis)
+
+## Key Details
+The PCAP file contains several ICMP echo requests with varying TTL (Time To Live) values, which strongly suggests OS fingerprinting, likely by a tool such as Nmap or similar reconnaissance utility.
+Packet Type	Source IP	Destination IP	TTL Value	Notes
+ICMP Echo	192.168.0.x	192.168.0.y	1	Low TTL, could be path trace test
+ICMP Echo	192.168.0.x	192.168.0.y	2	
+ICMP Echo	192.168.0.x	192.168.0.y	3	
+ICMP Echo	192.168.0.x	192.168.0.y	128	Typical of Windows systems
+ICMP Echo	192.168.0.x	192.168.0.y	255	Typical of Unix/Linux systems
+
+The combination of TTL values is indicative of active OS detection, often used in the early stages of cyber reconnaissance.
+
+## Screenshots
+
+![osfingerprinting]()
+
+![osfingerprinting]()
+
+![osfingerprinting]()
+
+## Indicators of Compromise (IoCs)
+ - Multiple ICMP packets with different TTLs:
+    This is a strong indicator of OS fingerprinting using TTL behavior analysis.
+
+ - No normal usage pattern:
+    The traffic does not reflect typical operational ICMP traffic (like keep-alives or pings), but rather crafted probes.
+
+- Absence of normal response patterns:
+    A lack of legitimate payload or service communication confirms this as likely reconnaissance.
+
+## Conclusion
+
+This PCAP file shows a pattern characteristic of OS fingerprinting, most likely using TTL manipulation via tools like Nmap:
+  - Reconnaissance phase activity that may precede further exploitation.
+  - No actual payload or data exfiltration observed in this segment.
+  - Recommend blocking and monitoring the source IP, and cross-checking firewall logs or IDS alerts around the timestamp of this activity.
