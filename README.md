@@ -7,6 +7,6 @@ To gain hands-on experience in packet-level threat detection and documentation. 
 - Wireshark – Deep packet inspection and protocol analysis
 - Snort – Intrusion detection system for signature-based alerting
 ## PCAP Analyzed
-![Files](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/tree/main/pcaps)
+[Files](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/tree/main/pcaps)
 ## Report
-Full report : ![Report](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/PCAP-Threat-Analysis.md)
+Full report : [Report](https://github.com/king0fdarkness/PCAP-Threat-Analysis-Lab/blob/main/PCAP-Threat-Analysis.md)
